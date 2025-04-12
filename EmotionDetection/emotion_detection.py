@@ -2,12 +2,14 @@ import json
 import requests
 
 def get_emotion(dict, p_value):
+    ''' Function to extrac the key by value '''
     for key,value in dict.items():
         if value == p_value:
             return key
     return none
 
 def emotion_detector(text_to_analyze):
+    ''' Function call Walson libraries to detect the Emotion of a sentence '''
     URL = 'https://sn-watson-emotion.labs.skills.network/v1/watson.runtime.nlp.v1/NlpService/EmotionPredict'
     header = {"grpc-metadata-mm-model-id": "emotion_aggregated-workflow_lang_en_stock"}
     input = { "raw_document": { "text": text_to_analyze } }

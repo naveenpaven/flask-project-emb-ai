@@ -1,3 +1,4 @@
+''' Emotion Detection applicatio build in Flask and deployed on localhost:5000 '''
 from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
 
@@ -5,10 +6,12 @@ app = Flask("Emotion Detection")
 
 @app.route("/")
 def render_index_page():
+    ''' Index Page '''
     return render_template('index.html')
 
 @app.route("/emotionDetector")
 def emotion_detect():
+    ''' Route to detect the emotions of the text passed from Index.html '''
     text_to_analyze = request.args.get('textToAnalyze')
     print(text_to_analyze)
     response = emotion_detector(text_to_analyze)
@@ -27,7 +30,7 @@ def emotion_detect():
 
         if key == "dominant_emotion":
             output = output + "The dominant emotion is " + value + "."
-    
+
         rowcount += 1
 
     return f"For the given statement, the system response is  {output}"
