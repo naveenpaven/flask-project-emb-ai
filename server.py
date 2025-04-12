@@ -13,6 +13,9 @@ def emotion_detect():
     print(text_to_analyze)
     response = emotion_detector(text_to_analyze)
 
+    if response["dominant_emotion"] is None:
+        return "Invalid text! Please try again!"
+
     output = ""
     rowcount = 1
     for key,value in response.items():
